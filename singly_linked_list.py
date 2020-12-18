@@ -24,7 +24,7 @@ class LinkedList:
         cur_node = self.head
         while True:
             if cur_node is None:
-                print('List is empty!')
+                # print('List is empty!')
                 return
             print(cur_node.data)
             cur_node = cur_node.next
@@ -43,6 +43,7 @@ class LinkedList:
             return
         cur_node = self.head
         cur_pos = 0
+        prev_node = None
         while True:
             if cur_pos == pos:
                 prev_node.next = new_node
@@ -60,6 +61,14 @@ class LinkedList:
             cur_node = cur_node.next
         return length
 
+    def delete_at_end(self):
+        cur_node = self.head
+        prev_node = None
+        while cur_node.next is not None:
+            prev_node = cur_node
+            cur_node = cur_node.next
+        prev_node.next = None
+
 
 if __name__ == "__main__":
     # Node=> data, next
@@ -70,7 +79,9 @@ if __name__ == "__main__":
     second_node = Node(20)
     linked_list.append(second_node)    # Insert node - head=>John=>Ben=>None
     third_node = Node(15)
-    linked_list.insert_node_at_index(third_node, 10)
+    linked_list.insert_node_at_index(third_node, 0)
     print(' ')
+    linked_list.print_list()
+    linked_list.delete_at_end()
     linked_list.print_list()
     # print(linked_list.head.next.data)
