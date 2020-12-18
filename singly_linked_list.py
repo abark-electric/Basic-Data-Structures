@@ -69,6 +69,25 @@ class LinkedList:
             cur_node = cur_node.next
         prev_node.next = None
 
+    def delete_node(self, pos):
+        if pos < 0 or pos >= self.len_list():
+            print('Invalid position')
+            return
+
+        # Add more conditionals to check if list is empty or node is head node (=> then delete head)
+
+        cur_node = self.head
+        prev_node = None
+        cur_pos = 0
+        while True:
+            if cur_pos == pos:
+                prev_node.next = cur_node.next
+                cur_node.next = None
+                break
+            prev_node = cur_node
+            cur_node = cur_node.next
+            cur_pos += 1
+
 
 if __name__ == "__main__":
     # Node=> data, next
@@ -79,9 +98,10 @@ if __name__ == "__main__":
     second_node = Node(20)
     linked_list.append(second_node)    # Insert node - head=>John=>Ben=>None
     third_node = Node(15)
-    linked_list.insert_node_at_index(third_node, 0)
+    linked_list.insert_node_at_index(third_node, 1)
     print(' ')
     linked_list.print_list()
-    linked_list.delete_at_end()
+    linked_list.delete_node(1)
     linked_list.print_list()
     # print(linked_list.head.next.data)
+
