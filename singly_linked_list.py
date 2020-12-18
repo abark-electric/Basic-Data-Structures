@@ -34,15 +34,43 @@ class LinkedList:
         self.head = new_node
         self.head.next = cur_head
 
+    def insert_node_at_index(self, new_node, pos):
+        if pos < 0 or pos > self.len_list():
+            print('Invalid position')
+            return
+        if pos is 0:
+            self.insert_at_head(new_node)
+            return
+        cur_node = self.head
+        cur_pos = 0
+        while True:
+            if cur_pos == pos:
+                prev_node.next = new_node
+                new_node.next = cur_node
+                break
+            prev_node = cur_node
+            cur_node = cur_node.next
+            cur_pos += 1
+
+    def len_list(self):
+        cur_node = self.head
+        length = 0
+        while cur_node is not None:
+            length += 1
+            cur_node = cur_node.next
+        return length
+
 
 if __name__ == "__main__":
     # Node=> data, next
     # firstNode.data => John, firstNode.next => None
-    first_node = Node("John")    # Created node
+    first_node = Node(10)    # Created node
     linked_list = LinkedList()    # Created linked list
     linked_list.append(first_node)    # Insert node - head=>John=>None
-    second_node = Node("Ben")
+    second_node = Node(20)
     linked_list.append(second_node)    # Insert node - head=>John=>Ben=>None
-    third_node = Node("Matt")
-    linked_list.insert_at_head(third_node)
+    third_node = Node(15)
+    linked_list.insert_node_at_index(third_node, 10)
+    print(' ')
     linked_list.print_list()
+    # print(linked_list.head.next.data)
